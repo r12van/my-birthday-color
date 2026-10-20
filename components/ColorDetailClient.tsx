@@ -4,20 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import chroma from 'chroma-js';
 import * as htmlToImage from 'html-to-image';
-// import html2canvas from 'html2canvas';
+import { BirthdayData } from '@/lib/colorData';
 
-// Mendefinisikan tipe data yang diterima dari server
-export default function ColorDetailClient({ data, monthNames }: { data: any, monthNames: string[] }) {
+export default function ColorDetailClient({ data, monthNames }: { data: BirthdayData, monthNames: string[] }) {
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
-  // Fungsi 1: Copy to Clipboard
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     setToastMsg(`${label} disalin!`);
-    setTimeout(() => setToastMsg(null), 2000); // Hilang setelah 2 detik
+    setTimeout(() => setToastMsg(null), 2000); 
   };
 
-  // Fungsi 2: Download sebagai Gambar (Update menggunakan html-to-image)
   const handleDownload = async () => {
     const element = document.getElementById('export-card');
     if (!element) return;
@@ -25,23 +22,39 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
     setToastMsg('Mempersiapkan gambar...');
     
     try {
-      // Mengubah elemen HTML menjadi Data URL gambar PNG
-      const dataUrl = await htmlToImage.toPng(element, { 
+      // Menggunakan toBlob karena lebih stabil di ponsel dibanding toPng
+      const blob = await htmlToImage.toBlob(element, { 
         quality: 1.0,
-        pixelRatio: 4,
+        pixelRatio: 2,
         backgroundColor: data.hex
       });
-      
-      // Membuat link buatan untuk memicu proses download otomatis
-      const link = document.createElement('a');
-      link.download = `BirthdayColor-${data.day}-${monthNames[data.month - 1]}.png`;
-      link.href = dataUrl;
-      link.click();
-      
-      setToastMsg('Gambar berhasil diunduh!');
+
+      if (!blob) throw new Error('Gagal membuat gambar');
+
+      const fileName = `BirthdayColor-${data.day}-${monthNames[data.month - 1]}.png`;
+      const file = new File([blob], fileName, { type: 'image/png' });
+
+      // FITUR BARU: Gunakan Menu Share HP jika tersedia (Sangat cocok untuk IG/WA)
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: `Birthday Color - ${data.colorName}`,
+          text: `Ini warna keberuntunganku! Cek milikmu juga.`,
+        });
+        setToastMsg('Siap dibagikan!');
+      } else {
+        // Fallback untuk browser yang tidak dukung Share API (seperti Chrome Desktop)
+        const dataUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = dataUrl;
+        link.click();
+        URL.revokeObjectURL(dataUrl); // Bersihkan memori
+        setToastMsg('Gambar berhasil diunduh!');
+      }
     } catch (error) {
-      console.error('Error saat generate gambar:', error);
-      setToastMsg('Gagal mengunduh gambar. Silakan coba lagi.');
+      console.error('Error:', error);
+      setToastMsg('Gagal memproses gambar. Coba lagi.');
     }
     
     setTimeout(() => setToastMsg(null), 3000);
@@ -50,7 +63,6 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
   const textColor = chroma(data.hex).luminance() < 0.4 ? 'text-white' : 'text-gray-900';
   const rgb = chroma(data.hex).rgb();
 
-  // Logika Palet Warna (Dengan perbaikan warna netral sebelumnya)
   const baseColor = chroma(data.hex);
   const [h, s, l] = baseColor.hsl();
   let palettes;
@@ -68,16 +80,17 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
   }
 
   return (
-    <article className={`min-h-screen p-6 md:p-12 transition-colors duration-500 ${textColor}`} style={{ backgroundColor: data.hex }}>
+    <article className={`min-h-screen p-6 md:p-12 transition-colors duration-700 ${textColor}`} style={{ backgroundColor: data.hex }}>
       
-      {/* Toast Notification (Popup berhasil copy/download) */}
+      {/* Toast Notifikasi dengan animasi pantul bawaan Tailwind */}
       {toastMsg && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-black/80 text-white px-6 py-3 rounded-full shadow-2xl z-50 animate-bounce">
           {toastMsg}
         </div>
       )}
 
-      <div className="max-w-4xl mx-auto">
+      {/* Menggunakan animasi CSS murni pengganti Framer Motion */}
+      <div className="max-w-4xl mx-auto animate-fade-up">
         <div className="flex justify-between items-center mb-8">
           <Link href="/" className="font-bold opacity-70 hover:opacity-100 transition-opacity">
             ← Kembali ke Kalender
@@ -90,13 +103,11 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
           </button>
         </div>
         
-        {/* AREA YANG AKAN DIFOTO OLEH HTML2CANVAS (id="export-card") */}
         <div id="export-card" className={`p-8 rounded-3xl ${textColor === 'text-white' ? 'bg-black/10' : 'bg-white/10'}`}>
           <header>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight" style={{ color: palettes.complementary }}>{data.day} {monthNames[data.month - 1]}</h1>
             <h2 className="text-3xl md:text-5xl font-bold mb-2">{data.colorName}</h2>
             
-            {/* Tombol Klik untuk Copy HEX */}
             <button 
               onClick={() => handleCopy(data.hex, "Kode HEX")}
               className="text-2xl md:text-3xl font-mono uppercase opacity-90 mb-8 hover:underline hover:opacity-100 transition-all cursor-pointer"
@@ -110,9 +121,8 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
               <p>Zodiak: {data.horoscope}</p>
             </div>
             
-            <div className={`p-6 border-l-4` }
-                style={{ borderColor: palettes.triadic[2] }}>
-                <p className="text-lg italic" style={{color: palettes.triadic[1]}}>"{data.meaning}"</p>
+            <div className={`p-6 border-l-4`} style={{ borderColor: palettes.triadic[1] }}>
+              <p className="text-lg italic" style={{color: palettes.triadic[2]}}>&ldquo;{data.meaning}&rdquo;</p>
             </div>
           </header>
 
@@ -121,8 +131,6 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
             <p className="opacity-70 mb-4 text-sm">*Klik warna untuk menyalin kode HEX</p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
-              {/* Analogous */}
               <div>
                 <h4 className="font-semibold mb-3">Harmonis</h4>
                 <div className="flex h-16 rounded-xl overflow-hidden shadow-md cursor-pointer border border-black/10">
@@ -132,7 +140,6 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
                 </div>
               </div>
 
-              {/* Complementary */}
               <div>
                 <h4 className="font-semibold mb-3">Kontras</h4>
                 <div className="flex h-16 rounded-xl overflow-hidden shadow-md cursor-pointer border border-black/10">
@@ -141,7 +148,6 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
                 </div>
               </div>
 
-              {/* Triadic */}
               <div>
                 <h4 className="font-semibold mb-3">Dinamis</h4>
                 <div className="flex h-16 rounded-xl overflow-hidden shadow-md cursor-pointer border border-black/10">
@@ -150,11 +156,9 @@ export default function ColorDetailClient({ data, monthNames }: { data: any, mon
                   ))}
                 </div>
               </div>
-
             </div>
           </section>
         </div>
-
       </div>
     </article>
   );
