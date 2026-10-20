@@ -25,7 +25,7 @@ export const getZodiacSign = (day: number, month: number): Horoscope => {
   return 'Sagittarius';
 };
 
-export const birthdayColors = [
+export const birthdayColors: BirthdayData[] = [
   // JANUARI (Capricorn & Aquarius) - Elemen Tanah & Udara (Warna solid, dingin, stabil)
   { month: 1, day: 1, horoscope: 'Capricorn', colorName: 'Pure White', hex: '#FFFFFF', meaning: 'Kesucian dan awal yang baru.' },
   { month: 1, day: 2, horoscope: 'Capricorn', colorName: 'Frosty White', hex: '#F0F8FF', meaning: 'Ketenangan jiwa dan pikiran jernih.' },
