@@ -12,18 +12,18 @@ export default function ColorDetailClient({ data, monthNames }: { data: Birthday
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     setToastMsg(`${label} disalin!`);
-    setTimeout(() => setToastMsg(null), 2000); 
+    setTimeout(() => setToastMsg(null), 2000);
   };
 
   const handleDownload = async () => {
     const element = document.getElementById('export-card');
     if (!element) return;
-    
+
     setToastMsg('Mempersiapkan gambar...');
-    
+
     try {
       // Menggunakan toBlob karena lebih stabil di ponsel dibanding toPng
-      const blob = await htmlToImage.toBlob(element, { 
+      const blob = await htmlToImage.toBlob(element, {
         quality: 1.0,
         pixelRatio: 2,
         backgroundColor: data.hex
@@ -56,7 +56,7 @@ export default function ColorDetailClient({ data, monthNames }: { data: Birthday
       console.error('Error:', error);
       setToastMsg('Gagal memproses gambar. Coba lagi.');
     }
-    
+
     setTimeout(() => setToastMsg(null), 3000);
   };
 
@@ -81,7 +81,7 @@ export default function ColorDetailClient({ data, monthNames }: { data: Birthday
 
   return (
     <article className={`min-h-screen p-6 md:p-12 transition-colors duration-700 ${textColor}`} style={{ backgroundColor: data.hex }}>
-      
+
       {/* Toast Notifikasi dengan animasi pantul bawaan Tailwind */}
       {toastMsg && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-black/80 text-white px-6 py-3 rounded-full shadow-2xl z-50 animate-bounce">
@@ -95,41 +95,41 @@ export default function ColorDetailClient({ data, monthNames }: { data: Birthday
           <Link href="/" className="font-bold opacity-70 hover:opacity-100 transition-opacity">
             ← Kembali ke Kalender
           </Link>
-          <button 
+          <button
             onClick={handleDownload}
             className={`px-4 py-2 font-bold rounded-lg border-2 transition-all hover:scale-105 shadow-md ${textColor === 'text-white' ? 'border-white bg-white/20 hover:bg-white/40' : 'border-gray-900 bg-black/10 hover:bg-black/20'}`}
           >
             📸 Unduh & Share IG
           </button>
         </div>
-        
+
         <div id="export-card" className={`p-8 rounded-3xl ${textColor === 'text-white' ? 'bg-black/10' : 'bg-white/10'}`}>
           <header>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight" style={{ color: palettes.complementary }}>{data.day} {monthNames[data.month - 1]}</h1>
             <h2 className="text-3xl md:text-5xl font-bold mb-2">{data.colorName}</h2>
-            
-            <button 
+
+            <button
               onClick={() => handleCopy(data.hex, "Kode HEX")}
               className="text-2xl md:text-3xl font-mono uppercase opacity-90 mb-8 hover:underline hover:opacity-100 transition-all cursor-pointer"
               title="Klik untuk menyalin"
             >
               {data.hex} 📋
             </button>
-            
+
             <div className="font-mono text-lg opacity-80 mb-10">
               <p>R:{rgb[0]} G:{rgb[1]} B:{rgb[2]}</p>
               <p>Zodiak: {data.horoscope}</p>
             </div>
-            
+
             <div className={`p-6 border-l-4`} style={{ borderColor: palettes.triadic[1] }}>
-              <p className="text-lg italic" style={{color: palettes.triadic[2]}}>&ldquo;{data.meaning}&rdquo;</p>
+              <p className="text-lg italic" style={{ color: palettes.analogous[2] }}>&ldquo;{data.meaning}&rdquo;</p>
             </div>
           </header>
 
           <section className="mt-16">
             <h3 className="text-2xl font-bold mb-6">Inspirasi Kombinasi Palet</h3>
             <p className="opacity-70 mb-4 text-sm">*Klik warna untuk menyalin kode HEX</p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <h4 className="font-semibold mb-3">Harmonis</h4>

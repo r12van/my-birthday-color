@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Birthday Color Generator - Temukan Warnamu!',
     description: 'Pilih tanggal lahirmu dan temukan warna spesifik yang mewakili karaktermu beserta palet kombinasi desainnya.',
-    url: 'https://domain-anda.com', // Nanti ganti dengan domain asli Anda
+    url: 'https://siom.ai.id', // Nanti ganti dengan domain asli Anda
     siteName: 'Birthday Color',
     locale: 'id_ID',
     type: 'website',
