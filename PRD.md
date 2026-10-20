@@ -177,10 +177,10 @@ flowchart TD
 - [x] Click-to-copy kode HEX dengan toast notifikasi.
 - [x] Export kartu visual ke PNG & Web Share API integration.
 
-### Fase 2: Peningkatan Interaktivitas & Desain (Next Sprint)
-- [ ] **Quick Datepicker Input**: Input tanggal lahir instan di bagian header (pilih tanggal & bulan langsung lompat ke halaman warna).
-- [ ] **Instagram Story Aspect Ratio**: Opsi ekspor kartu dengan format 9:16 (1080x1920) yang siap pakai untuk Instagram Stories & TikTok.
-- [ ] **Animasi Transisi Halaman**: Implementasi animasi halus saat membuka halaman detail.
+### Fase 2: Peningkatan Interaktivitas & Desain (Completed)
+- [x] **Quick Datepicker Input**: Input tanggal lahir instan di bagian header dan halaman detail (pilih tanggal & bulan langsung lompat ke halaman warna, dengan tombol pintas *"Hari Ini"*).
+- [x] **Instagram Story Aspect Ratio**: Opsi ekspor kartu dengan format 9:16 (1080x1920) yang siap pakai untuk Instagram Stories & TikTok lengkap dengan tab preview interaktif.
+- [x] **Animasi Transisi Halaman**: Implementasi animasi halus (*fade-up*, *fade-in*, *scale-in*, *staggered delay*, *float*) saat membuka halaman detail dan kartu.
 
 ### Fase 3: Fitur Komparasi & Sosial (Future Consideration)
 - [ ] **Color Compatibility**: Fitur mengecek kecocokan/harmoni warna antara dua tanggal lahir (pasangan, sahabat, atau rekan kerja).

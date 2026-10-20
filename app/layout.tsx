@@ -1,5 +1,12 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-plus-jakarta-sans',
+});
 
 export const metadata: Metadata = {
   title: 'Birthday Color | Temukan Warna Kelahiran & Karaktermu',
@@ -33,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body className={`${plusJakartaSans.variable} font-sans antialiased`}>{children}</body>
     </html>
   );
 }
