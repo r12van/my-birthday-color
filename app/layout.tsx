@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description: 'Cek 366 warna kelahiran dari 1 Januari hingga 31 Desember. Temukan arti warnamu, horoskop, dan inspirasi kombinasi palet warna estetik secara instan.',
   keywords: ['Birthday Color', 'Warna Lahir', 'Palet Warna Zodiak', 'Warna 366 Hari', 'Inspirasi Warna', 'Hex Color Zodiak'],
   authors: [{ name: 'Pembuat Birthday Color' }],
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
     title: 'Birthday Color Generator - Temukan Warnamu!',
     description: 'Pilih tanggal lahirmu dan temukan warna spesifik yang mewakili karaktermu beserta palet kombinasi desainnya.',
