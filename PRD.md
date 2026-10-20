@@ -63,12 +63,18 @@
   - Horoskop / Zodiak terkait.
   - Pesan filosofis / makna warna dalam kutipan elegan.
 
-### 3.4 FR-4: Generator Teori & Kombinasi Palet Warna
-Menggunakan algoritma kalkulasi ruang warna (HSL/Chroma) untuk menurunkan 3 palet inspirasi dari warna utama:
-1. **Harmonis (Analogous)**: Variasi sudut warna berdekatan ($-30^\circ$, $+30^\circ$).
-2. **Kontras (Complementary)**: Warna berseberangan ($+180^\circ$).
-3. **Dinamis (Triadic)**: Tiga sudut warna berjarak seimbang ($+120^\circ$, $+240^\circ$).
-- **Fallback Rule untuk Warna Netral**: Apabila warna memiliki saturasi sangat rendah ($< 0.05$) atau luminansi ekstrem (hitam pekat, putih bersih, abu-abu), sistem menggunakan kurasi palet elegan bawaan agar hasil kombinasi tetap bernilai estetis.
+### 3.4 FR-4: Generator Teori & Kombinasi Palet Warna (Color Theory Engine)
+Berdasarkan referensi standar teori warna (Park University, IxDF, 99designs), sistem mengklasifikasikan dan menurunkan dimensi warna:
+1. **Analisis Teori Warna Utama**:
+   - **Temperatur Warna**: *Warm* (Hangat: energi, aksi), *Cool* (Dingin: ketenangan, intuisi), *Neutral* (Netral: keseimbangan, stabilitas).
+   - **Variasi Nilai Rona (Tone Type)**: *Pure Hue* (rona murni jenuh), *Tint* (rona + putih / pastel lembut), *Tone* (rona + abu-abu / teduh bersahaja), *Shade* (rona + hitam / pekat mendalam).
+   - **Posisi Roda Warna**: Primer (*Red, Yellow, Blue*), Sekunder (*Orange, Green, Purple*), Tersier (*Red-Orange, Yellow-Green, Teal, Indigo, dll.*), dan Netral Bumi.
+   - **Psikologi Warna & Makna Terkurasi**: 366 filosofi tanggal lahir diperkaya dengan resonansi emosional teori warna (vitalitas, kejernihan kognitif, ketenangan reflektif, welas asih, dll.).
+2. **Kombinasi Skema Harmoni Palet**:
+   - **Harmonis (Analogous)**: Variasi sudut warna berdekatan ($-30^\circ$, $+30^\circ$).
+   - **Kontras (Complementary)**: Warna berseberangan ($+180^\circ$).
+   - **Dinamis (Triadic)**: Tiga sudut warna berjarak seimbang ($+120^\circ$, $+240^\circ$).
+   - **Fallback Rule untuk Warna Netral**: Apabila warna memiliki saturasi sangat rendah ($< 0.05$) atau luminansi ekstrem (hitam pekat, putih bersih, abu-abu), sistem menggunakan kurasi palet elegan bawaan agar hasil kombinasi tetap bernilai estetis.
 
 ### 3.5 FR-5: Interaksi Salin Kode Warna (Click-to-Copy)
 - Mengklik kode HEX utama atau kotak-kotak palet kombinasi akan langsung menyalin kode HEX ke papan klip (*clipboard*).

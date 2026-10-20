@@ -25,7 +25,7 @@ export default function Home() {
           Birthday Color
         </h1>
         <p className="text-gray-500 mt-1.5 mb-5 text-sm md:text-base">
-          Temukan warna keberuntungan, zodiak, dan makna karakter tanggal lahirmu
+          Temukan warna keberuntungan, dimensi teori warna, dan filosofi karakter tanggal lahirmu
         </p>
 
         {/* INPUT TANGGAL LAHIR CEPAT */}

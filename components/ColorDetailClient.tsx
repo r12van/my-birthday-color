@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import chroma from 'chroma-js';
 import * as htmlToImage from 'html-to-image';
-import { BirthdayData, Horoscope } from '@/lib/colorData';
+import { BirthdayData, Horoscope, getColorTheory } from '@/lib/colorData';
 import QuickDatePicker from '@/components/QuickDatePicker';
 
 interface ColorDetailClientProps {
@@ -138,6 +138,7 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
   }
 
   const zodiacBadge = ZODIAC_SYMBOLS[data.horoscope] || data.horoscope;
+  const theory = getColorTheory(data.hex);
   const cardBgClass = textColor === 'text-white' ? 'bg-black/15' : 'bg-white/20';
 
   return (
@@ -244,11 +245,30 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
             className={`p-6 sm:p-10 rounded-3xl backdrop-blur-md shadow-2xl animate-fade-up border border-white/10 ${cardBgClass}`}
           >
             <header className="animate-fade-up">
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/20 text-white border border-white/20 shadow-xs">
                   {zodiacBadge}
                 </span>
-                <span className="text-xs font-mono opacity-80">
+                <span
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/20 text-white border border-white/20 shadow-xs"
+                  title={`Suhu Warna: ${theory.temperatureLabel}`}
+                >
+                  <span>{theory.temperatureIcon}</span>
+                  <span>{theory.temperatureLabel}</span>
+                </span>
+                <span
+                  className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/20 text-white border border-white/20 shadow-xs"
+                  title={`Bentuk Nilai Warna: ${theory.toneTypeLabel}`}
+                >
+                  {theory.toneTypeLabel.split(' ')[0]}
+                </span>
+                <span
+                  className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/20 text-white border border-white/20 shadow-xs"
+                  title={`Roda Warna: ${theory.familyLabel} (${theory.wheelCategoryLabel})`}
+                >
+                  {theory.familyLabel}
+                </span>
+                <span className="text-xs font-mono opacity-80 ml-auto hidden sm:inline">
                   RGB({rgb.join(', ')})
                 </span>
               </div>
@@ -376,6 +396,89 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
                 </div>
               </div>
             </section>
+
+            {/* SEKSI DIMENSI TEORI WARNA */}
+            <section className="mt-8 pt-6 border-t border-white/10 animate-fade-up animation-delay-300">
+              <div className="flex flex-wrap justify-between items-baseline gap-2 mb-4">
+                <h3 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+                  <span>🎨</span>
+                  <span>Dimensi Teori Warna</span>
+                </h3>
+                <span className="text-xs opacity-75">
+                  Prinsip Roda Warna, Temperatur &amp; Psikologi
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Suhu Warna */}
+                <div className="bg-black/15 p-4 rounded-2xl border border-white/10 backdrop-blur-xs flex flex-col justify-between shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-wider opacity-75">Suhu Warna</span>
+                      <span className="text-sm">{theory.temperatureIcon}</span>
+                    </div>
+                    <h4 className="text-lg font-bold mb-1.5">{theory.temperatureLabel}</h4>
+                    <p className="text-xs leading-relaxed opacity-85">
+                      {theory.temperatureDescription}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-white/10 text-[11px] font-mono opacity-70">
+                    Hue: {theory.hsl.h}&deg; ({theory.temperature})
+                  </div>
+                </div>
+
+                {/* Bentuk Nilai / Tone Type */}
+                <div className="bg-black/15 p-4 rounded-2xl border border-white/10 backdrop-blur-xs flex flex-col justify-between shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-wider opacity-75">Variasi Nilai</span>
+                      <span className="text-sm">✨</span>
+                    </div>
+                    <h4 className="text-lg font-bold mb-1.5">{theory.toneTypeLabel.split(' ')[0]}</h4>
+                    <p className="text-xs leading-relaxed opacity-85">
+                      {theory.toneTypeDescription}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-white/10 text-[11px] font-mono opacity-70">
+                    Terang: {theory.hsl.l}% • Saturasi: {theory.hsl.s}%
+                  </div>
+                </div>
+
+                {/* Roda Warna */}
+                <div className="bg-black/15 p-4 rounded-2xl border border-white/10 backdrop-blur-xs flex flex-col justify-between shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-wider opacity-75">Roda Warna</span>
+                      <span className="text-sm">🎡</span>
+                    </div>
+                    <h4 className="text-lg font-bold mb-1.5">{theory.wheelCategoryLabel}</h4>
+                    <p className="text-xs leading-relaxed opacity-85">
+                      Bagian dari {theory.familyLabel} dalam skema 12 lingkaran warna dasar.
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-white/10 text-[11px] font-mono opacity-70">
+                    Kategori: {theory.wheelCategory}
+                  </div>
+                </div>
+
+                {/* Psikologi Teori Warna */}
+                <div className="bg-black/15 p-4 rounded-2xl border border-white/10 backdrop-blur-xs flex flex-col justify-between shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold uppercase tracking-wider opacity-75">Psikologi Warna</span>
+                      <span className="text-sm">🧠</span>
+                    </div>
+                    <h4 className="text-lg font-bold mb-1.5">Resonansi Batin</h4>
+                    <p className="text-xs leading-relaxed opacity-85">
+                      {theory.psychology}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-white/10 text-[11px] font-mono opacity-70">
+                    Teori Desain Grafis
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         )}
 
@@ -440,9 +543,22 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
                   {data.colorName}
                 </h3>
 
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-black/20 backdrop-blur-sm font-mono text-sm uppercase font-bold tracking-wider mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-black/20 backdrop-blur-sm font-mono text-sm uppercase font-bold tracking-wider mb-2">
                   <span>{data.hex}</span>
                   <span className="text-[11px] opacity-80">RGB({rgb.join(',')})</span>
+                </div>
+
+                {/* Badge Dimensi Teori Warna untuk Story */}
+                <div className="flex flex-wrap justify-center gap-1.5 mb-3 text-[10px] sm:text-[11px] font-semibold opacity-95">
+                  <span className="px-2 py-0.5 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 shadow-2xs">
+                    {theory.temperatureIcon} {theory.temperatureLabel}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 shadow-2xs">
+                    {theory.toneTypeLabel.split(' ')[0]}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 shadow-2xs">
+                    {theory.familyLabel.replace('Keluarga ', '')}
+                  </span>
                 </div>
 
                 {/* Makna / Filosofi dengan kontras tinggi terjamin */}

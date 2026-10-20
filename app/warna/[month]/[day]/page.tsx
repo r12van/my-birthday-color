@@ -13,8 +13,8 @@ export async function generateMetadata({
   
   const title = `Warna Lahir ${resolvedParams.day} ${monthNames[parseInt(resolvedParams.month) - 1]}`;
   const description = data 
-    ? `Temukan makna warna ${data.colorName} untuk kelahiran ${resolvedParams.day} ${monthNames[parseInt(resolvedParams.month) - 1]}. Lengkap dengan zodiak dan palet warna.`
-    : `Cek warna keberuntungan berdasarkan tanggal lahirmu.`;
+    ? `${data.meaning} Temukan dimensi teori warna ${data.colorName} (${data.hex}) untuk kelahiran ${resolvedParams.day} ${monthNames[parseInt(resolvedParams.month) - 1]}.`
+    : `Cek warna keberuntungan dan teori warna berdasarkan tanggal lahirmu.`;
 
   return { title, description };
 }
