@@ -43,11 +43,10 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setActiveFilter('Semua')}
-            className={`snap-start cursor-pointer whitespace-nowrap px-4 py-1.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-200 ${
-              activeFilter === 'Semua'
-                ? 'bg-gray-800 text-white shadow-md scale-105'
-                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-            }`}
+            className={`snap-start cursor-pointer whitespace-nowrap px-4 py-1.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-200 ${activeFilter === 'Semua'
+              ? 'bg-gray-800 text-white shadow-md scale-105'
+              : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+              }`}
           >
             Semua
           </button>
@@ -56,11 +55,10 @@ export default function Home() {
               key={zodiac}
               type="button"
               onClick={() => setActiveFilter(zodiac)}
-              className={`snap-start cursor-pointer whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-200 ${
-                activeFilter === zodiac
-                  ? 'bg-blue-600 text-white shadow-md scale-105'
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-              }`}
+              className={`snap-start cursor-pointer whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-200 ${activeFilter === zodiac
+                ? 'bg-blue-600 text-white shadow-md scale-105'
+                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                }`}
             >
               {zodiac}
             </button>
@@ -89,7 +87,7 @@ export default function Home() {
           return (
             <div key={month} className="flex flex-col gap-1 min-w-[140px] md:min-w-[160px] snap-start">
               {/* Header Bulan dengan offset pas di bawah filter bar sticky */}
-              <div className="bg-gray-300/95 backdrop-blur-xs text-gray-800 font-bold text-center py-2 text-xs sm:text-sm uppercase sticky top-[54px] z-20 shadow-xs rounded-t-md">
+              <div className="bg-gray-300/95 backdrop-blur-xs text-gray-800 font-bold text-center py-1 text-xs sm:text-sm uppercase z-20 shadow-xs rounded-t-md">
                 {monthNames[month - 1]}
               </div>
 
