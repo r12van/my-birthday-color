@@ -190,7 +190,7 @@ flowchart TD
 
 ### Fase 3: Fitur Komparasi & Sosial (Future Consideration)
 - [ ] **Color Compatibility**: Fitur mengecek kecocokan/harmoni warna antara dua tanggal lahir (pasangan, sahabat, atau rekan kerja).
-- [ ] **Dukungan Multi-Bahasa (i18n)**: Pilihan Bahasa Indonesia dan Bahasa Inggris.
+- [ ] **Dukungan Multi-Bahasa (i18n)**: Pilihan Bahasa Jepang, Bahasa Korea, Bahasa Perancis, Bahasa Indonesia, Bahasa Spanyol, Bahasa Jerman, Bahasa Mandarin, Bahasa India, Bahasa Belanda, Bahasa Vietnam, Bahasa Rusia, Bahasa Italia, Bahasa Arab, Bahasa Portugis, Bahasa Thailand, Bahasa Tagalog, Bahasa Turkish, dan Bahasa Inggris.
 - [ ] **Favorite / Bookmark**: Menyimpan warna favorit ke penyimpanan lokal browser (*LocalStorage*).
 
 ---
