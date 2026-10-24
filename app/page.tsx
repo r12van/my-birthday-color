@@ -1,7 +1,25 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import QuickDatePicker from '@/components/QuickDatePicker';
 import HomeCalendarView from '@/components/HomeCalendarView';
+import { birthdayColors } from '@/lib/colorData';
+
+const monthNames = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+  'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'
+];
+
+function getLuminance(hex: string): number {
+  const clean = hex.replace('#', '');
+  const r = parseInt(clean.substring(0, 2), 16) / 255;
+  const g = parseInt(clean.substring(2, 4), 16) / 255;
+  const b = parseInt(clean.substring(4, 6), 16) / 255;
+  const [lr, lg, lb] = [r, g, b].map((v) =>
+    v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
+  );
+  return 0.2126 * lr + 0.7152 * lg + 0.0722 * lb;
+}
 
 export const metadata: Metadata = {
   title: 'Birthday Color Indonesia | Temukan Karakter & Makna Warna Kelahiran 366 Hari',
@@ -67,7 +85,7 @@ export default function Home() {
       <header className="mb-6 mt-2 text-center animate-fade-in">
         <div className="flex justify-center mb-2">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="Birthday Color Indonesia Logo"
             width={88}
             height={88}
@@ -102,7 +120,58 @@ export default function Home() {
             366 Tanggal Lengkap
           </span>
         </div>
-        <HomeCalendarView />
+        <HomeCalendarView>
+          <nav
+            className="flex gap-1.5 overflow-x-auto pb-8 snap-x"
+            aria-label="Kalender Interaktif Warna Kelahiran 366 Hari"
+          >
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => {
+              const colorsInMonth = birthdayColors.filter((c) => c.month === month);
+
+              return (
+                <div
+                  key={month}
+                  className="month-column flex flex-col gap-1 min-w-[140px] md:min-w-[160px] snap-start"
+                  data-month={month}
+                >
+                  <div className="bg-gray-300/95 backdrop-blur-xs text-gray-800 font-bold text-center py-1 text-xs sm:text-sm uppercase z-20 shadow-xs rounded-t-md">
+                    {monthNames[month - 1]}
+                  </div>
+
+                  {colorsInMonth.map((c) => {
+                    const luminance = getLuminance(c.hex);
+                    const cellTextColor = luminance < 0.4 ? 'text-white' : 'text-gray-900';
+                    const badgeClass =
+                      cellTextColor === 'text-white'
+                        ? 'bg-black/30 text-white border-white/20'
+                        : 'bg-white/50 text-gray-900 border-black/10';
+
+                    return (
+                      <Link
+                        key={`${c.month}-${c.day}`}
+                        href={`/warna/${c.month}/${c.day}`}
+                        prefetch={false}
+                        className={`date-card relative flex flex-col items-start justify-between p-2.5 h-24 w-full text-left transition-all duration-200 hover:scale-[0.98] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs rounded-sm ${cellTextColor}`}
+                        style={{ backgroundColor: c.hex }}
+                        data-zodiac={c.horoscope}
+                        aria-label={`Warna kelahiran ${c.day} ${monthNames[c.month - 1]}: ${c.colorName} (${c.hex}), zodiak ${c.horoscope}`}
+                      >
+                        <span
+                          className={`font-mono font-bold text-xs px-1.5 py-0.5 rounded backdrop-blur-xs border ${badgeClass}`}
+                        >
+                          {c.month}/{c.day}
+                        </span>
+                        <span className="font-semibold text-xs leading-tight line-clamp-2 mt-1">
+                          {c.colorName}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </nav>
+        </HomeCalendarView>
       </section>
 
       {/* ARTIKEL EDUKATIF & PANDUAN SEO UNTUK MENINGKATKAN KUALITAS KONTEN */}

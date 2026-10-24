@@ -77,3 +77,38 @@ body {
 .animation-delay-400 {
   animation-delay: 400ms;
 }
+
+/* Filter Zodiak Berperforma Tinggi (Native CSS Engine, Zero Hydration Overhead) */
+[data-active-zodiac]:not([data-active-zodiac="Semua"]) .date-card {
+  display: none !important;
+}
+
+[data-active-zodiac="Aries"] .date-card[data-zodiac="Aries"],
+[data-active-zodiac="Taurus"] .date-card[data-zodiac="Taurus"],
+[data-active-zodiac="Gemini"] .date-card[data-zodiac="Gemini"],
+[data-active-zodiac="Cancer"] .date-card[data-zodiac="Cancer"],
+[data-active-zodiac="Leo"] .date-card[data-zodiac="Leo"],
+[data-active-zodiac="Virgo"] .date-card[data-zodiac="Virgo"],
+[data-active-zodiac="Libra"] .date-card[data-zodiac="Libra"],
+[data-active-zodiac="Scorpio"] .date-card[data-zodiac="Scorpio"],
+[data-active-zodiac="Sagittarius"] .date-card[data-zodiac="Sagittarius"],
+[data-active-zodiac="Capricorn"] .date-card[data-zodiac="Capricorn"],
+[data-active-zodiac="Aquarius"] .date-card[data-zodiac="Aquarius"],
+[data-active-zodiac="Pisces"] .date-card[data-zodiac="Pisces"] {
+  display: flex !important;
+}
+
+[data-active-zodiac="Aries"] .month-column:not(:has(.date-card[data-zodiac="Aries"])),
+[data-active-zodiac="Taurus"] .month-column:not(:has(.date-card[data-zodiac="Taurus"])),
+[data-active-zodiac="Gemini"] .month-column:not(:has(.date-card[data-zodiac="Gemini"])),
+[data-active-zodiac="Cancer"] .month-column:not(:has(.date-card[data-zodiac="Cancer"])),
+[data-active-zodiac="Leo"] .month-column:not(:has(.date-card[data-zodiac="Leo"])),
+[data-active-zodiac="Virgo"] .month-column:not(:has(.date-card[data-zodiac="Virgo"])),
+[data-active-zodiac="Libra"] .month-column:not(:has(.date-card[data-zodiac="Libra"])),
+[data-active-zodiac="Scorpio"] .month-column:not(:has(.date-card[data-zodiac="Scorpio"])),
+[data-active-zodiac="Sagittarius"] .month-column:not(:has(.date-card[data-zodiac="Sagittarius"])),
+[data-active-zodiac="Capricorn"] .month-column:not(:has(.date-card[data-zodiac="Capricorn"])),
+[data-active-zodiac="Aquarius"] .month-column:not(:has(.date-card[data-zodiac="Aquarius"])),
+[data-active-zodiac="Pisces"] .month-column:not(:has(.date-card[data-zodiac="Pisces"])) {
+  display: none !important;
+}

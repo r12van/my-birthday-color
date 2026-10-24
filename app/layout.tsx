@@ -55,9 +55,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   openGraph: {
     title: 'Birthday Color Indonesia | Temukan Karakter & Makna Warna Kelahiran',

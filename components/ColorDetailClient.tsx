@@ -71,13 +71,24 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
         });
         setToastMsg('Siap dibagikan!');
       } else {
-        // Fallback unduh langsung di browser
+        // Fallback unduh langsung di browser dengan penanganan aman untuk Chrome Safe Browsing
         const dataUrl = URL.createObjectURL(blob);
         const link = document.createElement('a');
+        link.style.display = 'none';
         link.download = fileName;
         link.href = dataUrl;
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
         link.click();
-        URL.revokeObjectURL(dataUrl);
+
+        // Tunda pembersihan URL agar browser selesai membaca blob stream (mencegah download gagal/aborted yang memicu peringatan Chrome)
+        setTimeout(() => {
+          if (document.body.contains(link)) {
+            document.body.removeChild(link);
+          }
+          URL.revokeObjectURL(dataUrl);
+        }, 1500);
+
         setToastMsg(`Gambar ${targetFormat === 'story' ? 'Story (1080x1920)' : 'Kartu'} berhasil diunduh!`);
       }
     } catch (error) {
