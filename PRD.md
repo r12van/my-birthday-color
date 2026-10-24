@@ -32,7 +32,7 @@
 
 ### 2.1 Persona 1: Pengguna Kasual & Penggemar Astrologi ("The Social Sharer")
 - **Profil**: Remaja dan dewasa muda (usia 16–30 tahun), pengguna aktif media sosial (Instagram, TikTok, WhatsApp, X).
-- **Kebutuhan**: Ingin tahu apa warna keberuntungan/karakter tanggal lahirnya, lalu membagikannya ke media sosial untuk interaksi teman sebaya.
+- **Kebutuhan**: Ingin tahu apa warna karakter hari kelahirannya, lalu membagikannya ke media sosial untuk interaksi teman sebaya.
 - **Pain Point**: Malas melakukan registrasi atau mengisi formulir panjang; butuh tampilan instan yang estetis.
 
 ### 2.2 Persona 2: Desainer Grafis & Kreator Konten ("The Visual Creator")
@@ -200,4 +200,4 @@ flowchart TD
 1. **Engagement Rate**: Rata-rata durasi sesi dan jumlah kartu warna yang dibuka per pengguna.
 2. **Share & Save Rate**: Rasio klik tombol *"Unduh & Share IG"* dibandingkan total kunjungan halaman detail.
 3. **SEO Performance**: Peringkat kata kunci Google untuk kueri seperti *"warna lahir [tanggal bulan]"*, *"arti warna kelahiran"*, dan *"birthday color indonesia"*.
-4. **Performa Teknis**: Skor Google Lighthouse $\ge 90$ untuk Performance, Accessibility, Best Practices, dan SEO.
+4. **Performa Teknis**: Skor Google Lighthouse $\ge 99$ untuk Performance, Accessibility, Best Practices, dan SEO.

@@ -67,7 +67,7 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
         await navigator.share({
           files: [file],
           title: `Birthday Color - ${data.colorName}`,
-          text: `Ini warna keberuntungan tanggal lahirku (${data.day} ${monthNames[data.month - 1]}): ${data.colorName} ${data.hex}! Cek milikmu juga.`,
+          text: `Ini warna tanggal lahirku (${data.day} ${monthNames[data.month - 1]}): ${data.colorName} ${data.hex}! Cek milikmu juga.`,
         });
         setToastMsg('Siap dibagikan!');
       } else {
@@ -180,11 +180,10 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
             <button
               type="button"
               onClick={() => setShowDatePicker(!showDatePicker)}
-              className={`px-3 py-1.5 rounded-xl text-xs md:text-sm font-semibold border transition-all active:scale-95 cursor-pointer ${
-                textColor === 'text-white'
+              className={`px-3 py-1.5 rounded-xl text-xs md:text-sm font-semibold border transition-all active:scale-95 cursor-pointer ${textColor === 'text-white'
                   ? 'border-white/40 bg-white/10 hover:bg-white/20'
                   : 'border-gray-900/30 bg-black/5 hover:bg-black/10'
-              }`}
+                }`}
             >
               🗓️ {showDatePicker ? 'Tutup Pilihan' : 'Cek Tanggal Lain'}
             </button>
@@ -193,11 +192,10 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
               type="button"
               onClick={() => handleDownload(activeTab)}
               disabled={isExporting}
-              className={`px-4 py-2 font-bold rounded-xl border-2 transition-all hover:scale-105 active:scale-95 shadow-lg flex items-center gap-2 cursor-pointer ${
-                textColor === 'text-white'
+              className={`px-4 py-2 font-bold rounded-xl border-2 transition-all hover:scale-105 active:scale-95 shadow-lg flex items-center gap-2 cursor-pointer ${textColor === 'text-white'
                   ? 'border-white bg-white/20 hover:bg-white/35'
                   : 'border-gray-900 bg-black/10 hover:bg-black/20'
-              }`}
+                }`}
             >
               <span>{activeTab === 'story' ? '📱' : '📸'}</span>
               <span>{isExporting ? 'Memproses...' : activeTab === 'story' ? 'Unduh Story (9:16)' : 'Unduh & Share IG'}</span>
@@ -225,11 +223,10 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
             <button
               type="button"
               onClick={() => setActiveTab('card')}
-              className={`cursor-pointer px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
-                activeTab === 'card'
+              className={`cursor-pointer px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${activeTab === 'card'
                   ? 'bg-white text-gray-900 shadow-md scale-100'
                   : 'text-white/80 hover:text-white'
-              }`}
+                }`}
             >
               <span>🖼️</span>
               <span>Kartu Standar</span>
@@ -237,11 +234,10 @@ export default function ColorDetailClient({ data, monthNames }: ColorDetailClien
             <button
               type="button"
               onClick={() => setActiveTab('story')}
-              className={`cursor-pointer px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
-                activeTab === 'story'
+              className={`cursor-pointer px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${activeTab === 'story'
                   ? 'bg-white text-gray-900 shadow-md scale-100'
                   : 'text-white/80 hover:text-white'
-              }`}
+                }`}
             >
               <span>📱</span>
               <span>Story IG (9:16)</span>

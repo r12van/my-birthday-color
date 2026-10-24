@@ -24,7 +24,7 @@ function getLuminance(hex: string): number {
 export const metadata: Metadata = {
   title: 'Birthday Color Indonesia | Temukan Karakter & Makna Warna Kelahiran 366 Hari',
   description:
-    'Temukan warna keberuntungan dan filosofi karakter kelahiranmu dari 1 Januari hingga 31 Desember. Lengkap dengan palet warna harmonis, kode HEX, dan zodiak.',
+    'Temukan warna dan filosofi karakter kelahiranmu dari 1 Januari hingga 31 Desember. Lengkap dengan palet warna harmonis, kode HEX, dan zodiak.',
   alternates: {
     canonical: '/',
   },
@@ -97,7 +97,7 @@ export default function Home() {
           Birthday Color Indonesia
         </h1>
         <p className="text-gray-500 mt-1.5 mb-5 text-sm md:text-base max-w-2xl mx-auto">
-          Temukan warna keberuntungan, dimensi teori warna, dan filosofi karakter tanggal lahirmu dari 366 hari dalam setahun.
+          Temukan warna hari kelahiran, dimensi teori warna, dan filosofi karakter tanggal lahirmu dari 366 hari dalam setahun.
         </p>
 
         {/* INPUT TANGGAL LAHIR CEPAT */}

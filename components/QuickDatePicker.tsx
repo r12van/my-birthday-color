@@ -131,7 +131,7 @@ export default function QuickDatePicker({
           <button
             type="button"
             onClick={handleSetToday}
-            title="Lihat warna keberuntungan hari ini"
+            title="Lihat warna hari ini"
             className="cursor-pointer bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 active:scale-95 text-gray-700 dark:text-gray-200 font-semibold text-xs px-3 py-2.5 rounded-xl border border-gray-300/80 dark:border-gray-600 shadow-sm transition-all duration-200 whitespace-nowrap"
           >
             ✨ Hari Ini

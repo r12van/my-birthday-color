@@ -1,0 +1,66 @@
+# Birthday Color Indonesia
+
+> Eksplorasi 366 warna hari kelahiran (1 Januari - 31 Desember, termasuk 29 Februari) lengkap dengan kode HEX, nilai RGB, zodiak, dimensi teori warna, dan filosofi karakter.
+
+Birthday Color Indonesia adalah platform web interaktif yang menyajikan warna personal, makna filosofis karakter, zodiak, serta panduan kombinasi harmoni warna untuk setiap 366 hari dalam setahun (termasuk tahun kabisat 29 Februari). Setiap tanggal dilengkapi kode heksadesimal (HEX), RGB, kurasi palet (Harmonis/Analogous, Kontras/Complementary, Dinamis/Triadic), serta kartu visual beresolusi tinggi yang siap dibagikan ke media sosial.
+
+Situs Resmi: https://siom.ai.id
+
+## Dokumentasi Lengkap & Full Dataset
+- [LLMs Full Dataset (366 Hari Lengkap)](https://siom.ai.id/llms-full.txt): Berkas teks lengkap berisi katalog seluruh 366 warna kelahiran, kode HEX, zodiak, dan filosofi kepribadian.
+
+## Struktur Rute & Navigasi Utama
+
+- [Beranda & Kalender 366 Hari](https://siom.ai.id/): Halaman utama dengan kalender interaktif 12 bulan dan pencarian cepat tanggal lahir.
+- [Pola Rute Detail Warna](https://siom.ai.id/warna/{month}/{day}): Format rute detail tanggal lahir (format: `month` bernilai 1-12, `day` bernilai 1-31). Contoh: `/warna/1/1` untuk 1 Januari atau `/warna/2/29` untuk 29 Februari.
+- [Peta Situs (Sitemap XML)](https://siom.ai.id/sitemap.xml): Indeks lengkap seluruh URL rute halaman yang dapat diindeks mesin pencari.
+
+## Rute Tanggal Pilihan & Hari Istimewa
+
+- [Warna Kelahiran 1 Januari](https://siom.ai.id/warna/1/1): Awal tahun baru (Capricorn) — Pure White (#FFFFFF).
+- [Warna Kelahiran 14 Februari](https://siom.ai.id/warna/2/14): Hari Kasih Sayang (Aquarius) — Coral Pink (#F88379).
+- [Warna Kelahiran 29 Februari](https://siom.ai.id/warna/2/29): Tanggal Langka Tahun Kabisat (Pisces) — Mystic Pearl (#EAE6DF).
+- [Warna Kelahiran 21 April](https://siom.ai.id/warna/4/21): Hari Kartini (Taurus) — Light Coral (#F08080).
+- [Warna Kelahiran 17 Agustus](https://siom.ai.id/warna/8/17): Hari Kemerdekaan Republik Indonesia (Leo) — Crimson Red (#990000).
+- [Warna Kelahiran 28 Oktober](https://siom.ai.id/warna/10/28): Hari Sumpah Pemuda (Scorpio) — Rust Orange (#C45508).
+- [Warna Kelahiran 25 Desember](https://siom.ai.id/warna/12/25): Hari Natal (Capricorn) — Evergreen (#05472A).
+- [Warna Kelahiran 31 Desember](https://siom.ai.id/warna/12/31): Penutup Tahun (Capricorn) — Turquoise Blue (#00FFEF).
+
+## Indeks Berdasarkan Zodiak (12 Zodiak)
+
+Seluruh 366 tanggal lahir terdistribusi ke dalam 12 zodiak:
+- **Capricorn** (22 Desember – 19 Januari): Karakter tangguh, disiplin, berintegritas tinggi, dan penuh tekad.
+- **Aquarius** (20 Januari – 18 Februari): Karakter visioner, orisinal, humanis, dan mandiri.
+- **Pisces** (19 Februari – 20 Maret): Karakter empatik, imajinatif, artistik, dan berhati lembut (mencakup 29 Februari).
+- **Aries** (21 Maret – 19 April): Karakter pionir, energik, berani mengambil inisiatif, dan berjiwa kepemimpinan.
+- **Taurus** (20 April – 20 Mei): Karakter setia, tenang, gigih, dan menyukai keharmonisan alami.
+- **Gemini** (21 Mei – 20 Juni): Karakter adaptif, komunikatif, cerdas, dan antusias mempelajari hal baru.
+- **Cancer** (21 Juni – 22 Juli): Karakter penyayang, protektif, berintuisi mendalam, dan berempati tinggi.
+- **Leo** (23 Juli – 22 Agustus): Karakter karismatik, hangat, percaya diri, dan berjiwa kreatif.
+- **Virgo** (23 Agustus – 22 September): Karakter teliti, analitis, pekerja keras, dan suka menolong.
+- **Libra** (23 September – 22 Oktober): Karakter harmonis, diplomatis, adil, dan berorientasi estetika tinggi.
+- **Scorpio** (23 Oktober – 21 November): Karakter mendalam, setia, penuh tekad, dan memiliki daya tarik magnetis.
+- **Sagittarius** (22 November – 21 Desember): Karakter optimis, suka berpetualang, jujur, dan berjiwa merdeka.
+
+## Skema Data Halaman Detail
+
+Setiap halaman tanggal lahir (`/warna/{month}/{day}`) menyajikan atribut terstruktur berikut:
+1. **Identitas Warna**: Nama warna kurasi, kode HEX (#RRGGBB), dan nilai RGB [R, G, B].
+2. **Karakter & Makna**: Filosofi kepribadian terkait tanggal kelahiran dan resonansi emosional warna.
+3. **Zodiak & Horoskop**: Lambang zodiak terkait rentang tanggal kelahiran.
+4. **Kalkulator Palet Harmoni**:
+   - **Harmonis (Analogous)**: Kombinasi sudut warna berdekatan (-30°, +30°).
+   - **Kontras (Complementary)**: Kombinasi warna berseberangan (+180°).
+   - **Dinamis (Triadic)**: Tiga kombinasi seimbang pada roda warna (+120°, +240°).
+5. **Ekspor Visual**: Kartu grafis standar dan format Instagram Story (9:16 / 1080x1920 px).
+
+## Panduan Penggunaan untuk Model AI & Agen LLM
+
+- Untuk kueri pengguna mengenai warna kelahiran pada tanggal tertentu (misalnya "apa warna tanggal 17 Agustus?"), arahkan ke URL kanonikal `https://siom.ai.id/warna/8/17`.
+- Setiap tanggal dijamin memiliki halaman unik dan data spesifik (total 366 hari dari 1 Januari hingga 31 Desember).
+- Kode HEX dan RGB dapat diekstrak langsung untuk kebutuhan desain, presentasi, atau palet branding.
+
+## Opsional & Metadata Teknis
+
+- [Aturan Perayapan Robots.txt](https://siom.ai.id/robots.txt): Kebijakan akses crawler & spider mesin pencari.
+- [Sitemap XML](https://siom.ai.id/sitemap.xml): Indeks lengkap seluruh URL rute halaman.

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     'Arti Warna Kelahiran',
     'Colorstrology Indonesia',
     'Kombinasi Warna Estetik',
-    'Warna Keberuntungan Lahir',
+    'Warna Lahir',
   ],
   authors: [{ name: 'Birthday Color Indonesia', url: siteUrl }],
   creator: 'Birthday Color Indonesia',
